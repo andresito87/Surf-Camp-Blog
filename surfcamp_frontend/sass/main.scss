@@ -1,0 +1,8 @@
+// Order of imports is important: Must be charged first the variables,typography,... and finally the base.scss
+@import "base/mixins";
+@import "base/variables";
+@import "base/typography";
+@import "base/base";
+
+@import "components/header";
+@import "components/button";
