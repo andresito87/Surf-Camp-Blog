@@ -16,6 +16,7 @@ const InfoBlock = ({ data }) => {
             <ReactMarkdown className="copy">{child.text}</ReactMarkdown>
           ))
         )}
+        {button}
       </div>
     </div>
   );
