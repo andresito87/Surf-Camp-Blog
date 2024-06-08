@@ -788,6 +788,113 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiInfoBlockInfoBlock extends Schema.CollectionType {
+  collectionName: 'info_blocks';
+  info: {
+    singularName: 'info-block';
+    pluralName: 'info-blocks';
+    displayName: 'InfoBlock';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    headline: Attribute.String & Attribute.Required;
+    text: Attribute.Blocks & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    showImageRight: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    button: Attribute.Component<'info-block.button'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::info-block.info-block',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::info-block.info-block',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInfoblockExperienceInfoblockExperience
+  extends Schema.SingleType {
+  collectionName: 'infoblock_experiences';
+  info: {
+    singularName: 'infoblock-experience';
+    pluralName: 'infoblock-experiences';
+    displayName: 'Infoblock Experience';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    info_blocks: Attribute.Relation<
+      'api::infoblock-experience.infoblock-experience',
+      'oneToMany',
+      'api::info-block.info-block'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::infoblock-experience.infoblock-experience',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::infoblock-experience.infoblock-experience',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInfoblocksLandingInfoblocksLanding
+  extends Schema.SingleType {
+  collectionName: 'infoblocks_landings';
+  info: {
+    singularName: 'infoblocks-landing';
+    pluralName: 'infoblocks-landings';
+    displayName: 'Infoblocks Landing';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    info_blocks: Attribute.Relation<
+      'api::infoblocks-landing.infoblocks-landing',
+      'oneToMany',
+      'api::info-block.info-block'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::infoblocks-landing.infoblocks-landing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::infoblocks-landing.infoblocks-landing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +913,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::info-block.info-block': ApiInfoBlockInfoBlock;
+      'api::infoblock-experience.infoblock-experience': ApiInfoblockExperienceInfoblockExperience;
+      'api::infoblocks-landing.infoblocks-landing': ApiInfoblocksLandingInfoblocksLanding;
     }
   }
 }
