@@ -825,20 +825,20 @@ export interface ApiInfoBlockInfoBlock extends Schema.CollectionType {
   };
 }
 
-export interface ApiInfoblockExperienceInfoblockExperience
+export interface ApiInfoblocksExperienceInfoblocksExperience
   extends Schema.SingleType {
-  collectionName: 'infoblock_experiences';
+  collectionName: 'infoblocks_experiences';
   info: {
-    singularName: 'infoblock-experience';
-    pluralName: 'infoblock-experiences';
-    displayName: 'Infoblock Experience';
+    singularName: 'infoblocks-experience';
+    pluralName: 'infoblocks-experiences';
+    displayName: 'Infoblocks Experience';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     info_blocks: Attribute.Relation<
-      'api::infoblock-experience.infoblock-experience',
+      'api::infoblocks-experience.infoblocks-experience',
       'oneToMany',
       'api::info-block.info-block'
     >;
@@ -846,13 +846,13 @@ export interface ApiInfoblockExperienceInfoblockExperience
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::infoblock-experience.infoblock-experience',
+      'api::infoblocks-experience.infoblocks-experience',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::infoblock-experience.infoblock-experience',
+      'api::infoblocks-experience.infoblocks-experience',
       'oneToOne',
       'admin::user'
     > &
@@ -914,7 +914,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::info-block.info-block': ApiInfoBlockInfoBlock;
-      'api::infoblock-experience.infoblock-experience': ApiInfoblockExperienceInfoblockExperience;
+      'api::infoblocks-experience.infoblocks-experience': ApiInfoblocksExperienceInfoblocksExperience;
       'api::infoblocks-landing.infoblocks-landing': ApiInfoblocksLandingInfoblocksLanding;
     }
   }
