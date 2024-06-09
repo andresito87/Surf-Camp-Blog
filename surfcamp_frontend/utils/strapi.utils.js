@@ -35,3 +35,34 @@ function createInfoBlockButton(buttonData) {
     </Link>
   );
 }
+
+export async function fetchBlogArticles() {
+  const blogData = await fetchDataFromStrapi("blog-articles?populate=deep");
+  const processedBlogArticles = blogData.map(processBlogArticles);
+
+  // Sort articles by date of publication
+  processedBlogArticles.sort(
+    (articleA, articleB) =>
+      new Date(articleB.publishedAt) - new Date(articleA.publishedAt)
+  );
+
+  return processedBlogArticles;
+}
+
+function processBlogArticles(article) {
+  return {
+    ...article.attributes,
+    id: article.id,
+    featuredImage:
+      BASE_URL + article.attributes?.featuredImage?.data?.attributes?.url,
+  };
+}
+
+export function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  });
+}
