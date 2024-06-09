@@ -1,5 +1,6 @@
 import HighlightArticle from "../_components/Blog/HighlightArticle";
 import SubscribeToNewsletter from "../_components/Blog/SubscribeToNewsletter";
+import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
 
 export default function Page() {
   const highlightArticle = {
@@ -17,10 +18,39 @@ export default function Page() {
     slug: "takeoff",
     featuredImage: "assets/hero-experience.png",
   };
+
+  const featuredArticles = [
+    {
+      headline: "The best surf spots in the world",
+      slug: "surf-spots",
+      date: "Monday, June 05, 2023",
+      featuredImage: "assets/hero-experience.png",
+    },
+    {
+      headline: "How to choose the right surfboard",
+      slug: "choose-surfboard",
+      date: "Monday, June 05, 2023",
+      featuredImage: "assets/hero-experience.png",
+    },
+    {
+      headline: "The best surf spots in the world",
+      slug: "surf-spots",
+      date: "Monday, July 05, 2023",
+      featuredImage: "assets/hero-experience.png",
+    },
+    {
+      headline: "How to choose the right surfboard",
+      slug: "choose-surfboard",
+      date: "Monday, May 05, 2023",
+      featuredImage: "assets/hero-experience.png",
+    },
+  ];
+
   return (
     <main className="blog-page">
       <HighlightArticle data={highlightArticle} />
       <SubscribeToNewsletter />
+      <FeaturedItems items={featuredArticles} />
     </main>
   );
 }
