@@ -806,6 +806,14 @@ export interface ApiBlogArticleBlogArticle extends Schema.CollectionType {
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
     author: Attribute.String & Attribute.Required;
     isHighlightArticle: Attribute.Boolean & Attribute.DefaultTo<false>;
+    articleContent: Attribute.DynamicZone<
+      [
+        'blog-article.headline',
+        'blog-article.paragraph-with-image',
+        'blog-article.paragraph',
+        'blog-article.landscape-image'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

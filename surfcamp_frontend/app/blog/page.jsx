@@ -27,3 +27,6 @@ export default async function Page() {
     </main>
   );
 }
+
+// This page will be re-generated every 5 minutes, keeping the data fresh
+export const revalidate = 300;
