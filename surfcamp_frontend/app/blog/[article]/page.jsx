@@ -1,3 +1,4 @@
+import ArticleIntro from "@/app/_components/Blog/ArticleIntro";
 import { fetchBlogArticles, fetchDataFromStrapi } from "@/utils/strapi.utils";
 
 export default async function Page({ params }) {
@@ -7,7 +8,7 @@ export default async function Page({ params }) {
   const article = articles.find((article) => article.slug === slug);
   return (
     <main>
-      <h1>{article.headline}</h1>
+      <ArticleIntro article={article} />
     </main>
   );
 }
