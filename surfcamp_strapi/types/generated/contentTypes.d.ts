@@ -814,6 +814,9 @@ export interface ApiBlogArticleBlogArticle extends Schema.CollectionType {
         'blog-article.landscape-image'
       ]
     >;
+    isHeadlineColorDark: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

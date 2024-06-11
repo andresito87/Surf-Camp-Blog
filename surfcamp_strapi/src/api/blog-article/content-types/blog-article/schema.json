@@ -50,6 +50,11 @@
         "blog-article.paragraph",
         "blog-article.landscape-image"
       ]
+    },
+    "isHeadlineColorDark": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

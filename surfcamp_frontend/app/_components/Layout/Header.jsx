@@ -11,7 +11,14 @@ const Header = () => {
   ];
   return (
     <header
-      className={`header ${pathname === "/experience" ? "header--light" : ""}`}
+      className={`header ${
+        pathname === "/experience" ||
+        pathname === "/blog/takeoff" ||
+        pathname === "/blog/surfboard-shaping" ||
+        pathname === "/blog/wetsuit"
+          ? "header--light"
+          : ""
+      }`}
       //className={`header ${pathname === "/experience" && "header--light"}`} // two ways to write the same thing
     >
       <img
