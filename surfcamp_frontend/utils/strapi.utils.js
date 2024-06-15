@@ -66,3 +66,7 @@ export function formatDate(dateString) {
     day: "2-digit",
   });
 }
+
+export function extractImageUrl(imageData) {
+  return BASE_URL + imageData.data?.attributes?.url;
+}
