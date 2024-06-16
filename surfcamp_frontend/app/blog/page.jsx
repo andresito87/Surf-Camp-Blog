@@ -1,4 +1,3 @@
-import axios from "axios";
 import HighlightArticle from "../_components/Blog/HighlightArticle";
 import SubscribeToNewsletter from "../_components/Blog/SubscribeToNewsletter";
 import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";

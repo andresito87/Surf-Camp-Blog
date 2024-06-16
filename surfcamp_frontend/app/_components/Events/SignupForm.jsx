@@ -4,8 +4,15 @@ import { useState } from "react";
 import TextInput from "../TextInput";
 import axios from "axios";
 import { allDataFilledIn } from "@/utils/validation.utils";
+import { generateSignupPayload } from "@/utils/strapi.utils";
 
-const SignupForm = ({ headline, infoText, buttonLabel }) => {
+const SignupForm = ({
+  headline,
+  infoText,
+  buttonLabel,
+  pricing,
+  eventId = null,
+}) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,12 +29,7 @@ const SignupForm = ({ headline, infoText, buttonLabel }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      data: {
-        ...formData,
-        isGeneralInterest: true,
-      },
-    };
+    const payload = generateSignupPayload(formData, eventId);
 
     if (allDataFilledIn(formData)) {
       // send data to Strapi
@@ -91,6 +93,19 @@ const SignupForm = ({ headline, infoText, buttonLabel }) => {
           <button className="btn btn--medium btn--turquoise" type="submit">
             {buttonLabel || "Stay in touch!"}
           </button>
+          {pricing && (
+            <div className="signup-form__pricing">
+              <h3>Pricing</h3>
+              <p className="copy">
+                Single Room:
+                <span className="bold"> {pricing.singlePrice}€ per person</span>
+              </p>
+              <p className="copy">
+                Shared Room:
+                <span className="bold"> {pricing.sharedPrice}€ per person</span>
+              </p>
+            </div>
+          )}
         </form>
       )}
     </section>

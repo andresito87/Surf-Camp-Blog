@@ -32,12 +32,19 @@ export default async function Page({ params }) {
 
 // This function will be called at build time and will return an array of possible values for article
 // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props
-export async function getStaticParams() {
-  const articles = await fetchDataFromStrapi("blog-articles");
 
-  return articles.map((article) => ({
-    article: {
-      article: article.attributes.slug,
-    },
-  }));
+export async function getStaticParams() {
+  try {
+    const articles = await fetchDataFromStrapi("blog-articles");
+
+    return articles.map((article) => ({
+      article: {
+        article: article.attributes.slug,
+      },
+    }));
+  } catch (error) {
+    console.log("Error fetching slugs for articles", error);
+  }
 }
+
+export const revalidate = 300;
