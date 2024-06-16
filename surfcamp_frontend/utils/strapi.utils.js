@@ -1,5 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
+import qs from "qs";
 
 const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
 
@@ -80,6 +81,7 @@ export async function fetchIndividualEvent(eventId) {
 function processEventData(event) {
   return {
     ...event.attributes,
+    image: BASE_URL + event.attributes?.image?.data?.attributes?.url,
     id: event.id,
   };
 }
@@ -102,4 +104,41 @@ export function generateSignupPayload(formData, eventId) {
       },
     };
   }
+}
+
+function createEventQuery(eventIdToExclude) {
+  const queryObject = {
+    pagination: {
+      start: 0,
+      limit: 12,
+    },
+    populate: {
+      image: {
+        populate: "*",
+      },
+    },
+    sort: ["startingDate:desc"],
+    filters: {
+      startingDate: {
+        gt: new Date(),
+      },
+    },
+  };
+
+  // Only create filter to exclude the current event if an ID is provided
+  if (eventIdToExclude) {
+    queryObject.filters.id = {
+      $ne: eventIdToExclude,
+    };
+  }
+
+  return qs.stringify(queryObject, { encodeValuesOnly: true });
+}
+
+export async function fetchAllEvents(eventIdToExclude = null) {
+  const query = createEventQuery(eventIdToExclude);
+  console.log(query);
+
+  const response = await axios.get(`${BASE_URL}/api/events?${query}`);
+  return response.data.data.map((event) => processEventData(event));
 }

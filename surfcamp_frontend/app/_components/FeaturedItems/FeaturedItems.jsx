@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import FeaturedArticle from "./FeaturedArticle";
+import FeaturedEvent from "./FeaturedEvent";
 
 // function recieves a headline prop and renders a list of items
-const FeaturedItems = ({ headline, items }) => {
+const FeaturedItems = ({ headline, items, itemType = "article" }) => {
   const [itemNumber, setItemNumber] = useState(3);
   const onShowMore = () => {
     if (items.length < itemNumber + 3) {
@@ -17,9 +18,12 @@ const FeaturedItems = ({ headline, items }) => {
         {headline || "Our featured articles"}
       </h3>
       <div className="featured-items__container">
-        {items.slice(0, itemNumber).map((item) => (
-          <FeaturedArticle key={item.slug} article={item} />
-        ))}
+        {items.slice(0, itemNumber).map((item) => {
+          if (itemType === "event") {
+            return <FeaturedEvent key={item.id} event={item} />;
+          }
+          return <FeaturedArticle key={item.id} article={item} />;
+        })}
       </div>
       {
         // if there are more items to show, show the button

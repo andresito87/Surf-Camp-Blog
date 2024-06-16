@@ -1,11 +1,14 @@
 import SignupForm from "@/app/_components/Events/SignupForm";
-import { fetchDataFromStrapi } from "@/utils/strapi.utils";
+import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems";
+import { fetchAllEvents, fetchDataFromStrapi } from "@/utils/strapi.utils";
 import { fetchIndividualEvent } from "@/utils/strapi.utils";
 import ReactMarkdown from "react-markdown";
 
 export default async function Page({ params }) {
   const eventId = params.event;
   const event = await fetchIndividualEvent(eventId);
+  // Fetch all events except the current one
+  const otherEvents = await fetchAllEvents(eventId);
 
   const description = (
     <ReactMarkdown className="copy">
@@ -35,6 +38,11 @@ export default async function Page({ params }) {
         buttonLabel="Sign Up"
         pricing={pricing}
         eventId={eventId}
+      />
+      <FeaturedItems
+        headline="Explore other events"
+        items={otherEvents}
+        itemType="event"
       />
     </main>
   );

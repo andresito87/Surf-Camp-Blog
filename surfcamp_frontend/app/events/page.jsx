@@ -1,6 +1,9 @@
+import { fetchAllEvents } from "@/utils/strapi.utils";
 import SignupForm from "../_components/Events/SignupForm";
+import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
 
-export default function Page() {
+export default async function Page() {
+  const allEvents = await fetchAllEvents();
   const infoText = (
     <>
       <p className="copy-small">
@@ -43,6 +46,11 @@ export default function Page() {
   return (
     <main className="events-page">
       <SignupForm headline={headline} infoText={infoText} />
+      <FeaturedItems
+        headline="Upcoming camps & events"
+        items={allEvents}
+        itemType="event"
+      />
     </main>
   );
 }
