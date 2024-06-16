@@ -1,10 +1,11 @@
 "use client"; // It is necessary for the component to be executed on the client side, adding interactivity to the page(form).
-
 import { useState } from "react";
+import axios from "axios";
 
 const SubscribeToNewsletter = () => {
   const [email, setEmail] = useState("");
   const [hasSignedUp, setHasSignedUp] = useState(false); // State to handle the user sign up status
+  const [showError, setShowError] = useState(false); // State to handle the error message
 
   // Function to handle the email input change
   const onChangeEmail = (e) => {
@@ -12,17 +13,34 @@ const SubscribeToNewsletter = () => {
   };
 
   // Function to handle the form submission
-  const onSubmitForm = (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
-    if (email.length) {
-      // Send email to Strapi
+
+    try {
+      if (email.length) {
+        // Send email to Strapi
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/newsletter-signups`,
+          {
+            data: {
+              email,
+            },
+          }
+        );
+      }
       setHasSignedUp(true);
+    } catch (error) {
+      setShowError(true);
     }
   };
 
   return (
     <section className="newsletter">
-      {hasSignedUp ? (
+      {showError ? (
+        <h4 className="newsletter__error">
+          An error occurred, please try again later.
+        </h4>
+      ) : hasSignedUp ? (
         <h4 className="newsletter__thanks">
           Thank you for subscribing to our newsletter!
         </h4>

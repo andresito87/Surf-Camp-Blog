@@ -8,7 +8,6 @@ const BlogPreview = async () => {
     .filter((article) => !article.isHighlightArticle)
     .slice(0, 3);
   const articlesToDisplay = [highlightArticle, ...recentlyPublishedArticles];
-  console.log(articlesToDisplay);
   return (
     <div>
       <div className="blog-preview">

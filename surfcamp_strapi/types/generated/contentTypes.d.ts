@@ -942,6 +942,36 @@ export interface ApiInfoblocksLandingInfoblocksLanding
   };
 }
 
+export interface ApiNewsletterSignupNewsletterSignup
+  extends Schema.CollectionType {
+  collectionName: 'newsletter_signups';
+  info: {
+    singularName: 'newsletter-signup';
+    pluralName: 'newsletter-signups';
+    displayName: 'Newsletter Signup';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    email: Attribute.Email & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newsletter-signup.newsletter-signup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newsletter-signup.newsletter-signup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -964,6 +994,7 @@ declare module '@strapi/types' {
       'api::info-block.info-block': ApiInfoBlockInfoBlock;
       'api::infoblocks-experience.infoblocks-experience': ApiInfoblocksExperienceInfoblocksExperience;
       'api::infoblocks-landing.infoblocks-landing': ApiInfoblocksLandingInfoblocksLanding;
+      'api::newsletter-signup.newsletter-signup': ApiNewsletterSignupNewsletterSignup;
     }
   }
 }
