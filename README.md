@@ -50,11 +50,11 @@
 
 ## Authors
 
-- [Andrés Samuel Podadera González](https://www.linkedin.com/in/andresito87/)
+- [Andrés Samuel Podadera González](https://www.linkedin.com/in/andresito87/){:target="\_blank"}
 
 ## References
 
-- [The Freelance Stack: Real project with NextJS and Strapi](https://learning.oreilly.com/course/the-freelance-stack/9781835465462/)
+- [The Freelance Stack: Real project with NextJS and Strapi](https://learning.oreilly.com/course/the-freelance-stack/9781835465462/){:target="\_blank"}
 
 ## License
 
