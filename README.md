@@ -11,21 +11,42 @@
 
 ## Installation
 
-1. Clone the repository
-2. Install the dependencies
+1.  Clone the repository
 
-```bash
-npm install
-```
+        ```bash
+        git clone https://github.com/andresito87/Surf-Camp-Blog.git
+        ```
 
-3. Run the development server
+2.  Install the dependencies
 
-```bash
-cd surfcamp_frontend
-npm run dev
-```
+    ```bash
+    cd surfcamp_frontend
+    npm install
+    cd surfcamp_strapi
+    npm install
+    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  Run the development DB and backend API in Strapi
+
+    ```bash
+    cd surfcamp_strapi
+    npm run develop
+    ```
+
+4.  Run the development server
+
+    ```bash
+    cd surfcamp_frontend
+    npm run dev
+    ```
+
+5.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Images of App
+
+![Home](surfcamp_frontend/imagesApp/foto1.png)
+![SignUp Form](surfcamp_frontend/imagesApp/foto2.png)
+![DB Strapi](surfcamp_frontend/imagesApp/foto3.png)
 
 ## Authors
 
