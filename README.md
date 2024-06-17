@@ -50,7 +50,7 @@
 
 ## Authors
 
-- [Andrés Samuel Podadera González](https://www.linkedin.com/in/andresito87/){:target="\_blank"}
+<a href="https://www.linkedin.com/in/andresito87/" target="_blank">Andrés Samuel Podadera González</a>
 
 ## References
 
